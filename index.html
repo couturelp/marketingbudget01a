@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Twitter bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link href="form.css" rel="stylesheet">
+    <link rel="stylesheet" href="demo.css" media="screen">
+    <link rel="stylesheet" href="demo-print.css" media="print">
+    <style media="screen">
+            #holder {
+                height: 400px;
+                margin: -200px 0 0 -200px;
+                width: 400px;
+            }
+    </style>
+    <!-- apiCheck is used by formly to validate its api -->
+    <script src="//npmcdn.com/api-check@latest/dist/api-check.js"></script>
+    <!-- This is the latest version of angular (at the time this template was created) -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <!-- This is the current state of master for formly core. -->
+    <script src="//npmcdn.com/angular-formly@latest/dist/formly.js"></script>
+    <!-- This is the current state of master for the bootstrap templates -->
+    <script src="//npmcdn.com/angular-formly-templates-bootstrap@latest/dist/angular-formly-templates-bootstrap.js"></script>
+    <!-- This is the latest version of angularjs-slider. -->
+    <script src="//npmcdn.com/angularjs-slider"></script>
+      
+    <!-- angularjs-slider CSS -->
+    <link href="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.css" rel="stylesheet">
+
+    <!-- This is the latest version of angularjs-slider. -->
+    <script src="//npmcdn.com/angularjs-slider"></script>
+      
+    <script src="raphael.min.js"></script>
+    <script src="form.js"></script>
+      
+
+      
+    <title>Analyse de budget Marketing</title>
+  </head>
+
+  <body ng-app="formlyExample" ng-controller="MainCtrl as vm">
+    <div class="col-md-6">
+      <h1>Analyse de budget Marketing: {{::vm.exampleTitle}}</h1>
+      <div>
+        Entrez les informations ci-dessous pour obtenir une visualisation de vos investissements marketing optimaux.
+      </div>
+      <form ng-submit="vm.onSubmit()" name="vm.form" novalidate>
+        <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+          <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Analyser</button>
+          <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Recommencer</button>
+        </formly-form>
+      </form>
+      
+    </div>
+    <div class="col-md-6" id="holder" style="margin-top:40px">
+    </div>
+    <div class="col-md-12">
+      <h2>Form Data</h2>
+      <pre>{{vm.model | json}}</pre>
+    </div>
+
+    <div class="col-md-12" style="margin-top:30px">
+      <small>
+        This is angular app v{{vm.env.angularVersion}} was  
+        made with ♥ by
+        <strong>
+          <span ng-if="!vm.author.name || !vm.author.url">
+            {{vm.author.name || 'anonymous'}}
+          </span>
+          <a ng-if="vm.author.url" ng-href="{{::vm.author.url}}">
+            {{vm.author.name}}
+          </a>
+        </strong>
+                <br />
+      </small>
+    </div>
+    <!-- Put custom templates here -->
+    
+    <script type="text/ng-template" id="custom.html">
+      <div class="form-group">
+        <label for="{{::id}}">{{options.templateOptions.label}}</label>
+        <input id="{{::id}}" name="{{::id}}" class="form-control" ng-model="model[options.key]" />
+      </div>
+    </script>
+    <script type="text/ng-template" id="example-directive.html">
+      <div class="form-group">
+        <label for="{{::id}}">{{options.templateOptions.label}}</label>
+        <input id="{{::id}}" name="{{::id}}" class="form-control" ng-model="model[options.key]" />
+      </div>
+    </script>
+
+  </body>
+
+</html>
